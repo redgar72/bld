@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Speffz edge practice — white top, green front</title>
+  <title>Speffz edges & corners — white top, green front</title>
   <style>
     :root {
       --bg: #12141a;
@@ -42,7 +42,41 @@
     .subtitle {
       color: var(--muted);
       font-size: 0.875rem;
-      margin-bottom: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .quiz-mode {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.65rem 0.85rem;
+      margin-bottom: 1.25rem;
+      background: var(--bg);
+    }
+
+    .quiz-mode legend {
+      font-size: 0.75rem;
+      color: var(--muted);
+      padding: 0 0.35rem;
+    }
+
+    .quiz-mode .options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem 1rem;
+      margin-top: 0.35rem;
+    }
+
+    .quiz-mode label {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      cursor: pointer;
+      font-size: 0.875rem;
+      color: var(--text);
+    }
+
+    .quiz-mode input {
+      accent-color: var(--accent);
     }
 
     .card {
@@ -72,17 +106,20 @@
       margin-top: 0.35rem;
     }
 
-    .edge-visual {
+    .piece-visual {
       display: flex;
       justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
       gap: 4px;
       margin-bottom: 1.75rem;
       perspective: 400px;
+      min-height: 76px;
     }
 
     .sticker {
-      width: 72px;
-      height: 72px;
+      width: 68px;
+      height: 68px;
       border-radius: 8px;
       border: 3px solid rgba(255, 255, 255, 0.15);
       box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.2);
@@ -331,19 +368,32 @@
     .net-sticker.blank {
       font-size: 0;
     }
+
+    .net-sticker.corner {
+      letter-spacing: -0.02em;
+    }
   </style>
 </head>
 <body>
-  <h1>Speffz edge stickers</h1>
+  <h1>Speffz edges & corners</h1>
   <p class="subtitle">White top · Green front · Type the letter for the highlighted sticker</p>
 
   <div class="card">
+    <fieldset class="quiz-mode">
+      <legend>Practice</legend>
+      <div class="options">
+        <label><input type="radio" name="quizMode" value="edges" checked /> Edges only</label>
+        <label><input type="radio" name="quizMode" value="corners" /> Corners only</label>
+        <label><input type="radio" name="quizMode" value="both" /> Edges & corners</label>
+      </div>
+    </fieldset>
+
     <div class="view-label">
       <div class="face" id="faceLine">—</div>
       <div class="detail" id="hintLine">Press <kbd>Enter</kbd> to check · any letter A–X</div>
     </div>
 
-    <div class="edge-visual" id="edgeVisual" aria-hidden="true"></div>
+    <div class="piece-visual" id="pieceVisual" aria-hidden="true"></div>
 
     <form id="quizForm" autocomplete="off">
       <label for="answer">Letter</label>
@@ -452,12 +502,90 @@
     </div>
   </details>
 
+  <details class="ref-block">
+    <summary>Corner lettering net</summary>
+    <div class="ref-inner">
+      <p class="ref-caption">
+        Corners only — letters at the four corners of each face, clockwise from <strong>top-left</strong> (A→B→C→D on white, and so on). Edge and center stickers left blank. Same cross layout as edges.
+      </p>
+      <div class="net" aria-label="Unfolded cube net with Speffz corner letters">
+        <!-- U: TL A, TR B, BR C, BL D -->
+        <div class="net-face u" style="--c: #f5f5f5">
+          <span class="net-sticker corner" style="background: var(--c)">A</span>
+          <span class="net-sticker blank" style="background: var(--c)"></span>
+          <span class="net-sticker corner" style="background: var(--c)">B</span>
+          <span class="net-sticker blank" style="background: var(--c)"></span>
+          <span class="net-sticker blank" style="background: var(--c)"></span>
+          <span class="net-sticker blank" style="background: var(--c)"></span>
+          <span class="net-sticker corner" style="background: var(--c)">D</span>
+          <span class="net-sticker blank" style="background: var(--c)"></span>
+          <span class="net-sticker corner" style="background: var(--c)">C</span>
+        </div>
+        <!-- L: E F G H -->
+        <div class="net-face l" style="--c: #ff5900">
+          <span class="net-sticker corner" style="background: var(--c)">E</span>
+          <span class="net-sticker blank" style="background: var(--c)"></span>
+          <span class="net-sticker corner" style="background: var(--c)">F</span>
+          <span class="net-sticker blank" style="background: var(--c)"></span>
+          <span class="net-sticker blank" style="background: var(--c)"></span>
+          <span class="net-sticker blank" style="background: var(--c)"></span>
+          <span class="net-sticker corner" style="background: var(--c)">H</span>
+          <span class="net-sticker blank" style="background: var(--c)"></span>
+          <span class="net-sticker corner" style="background: var(--c)">G</span>
+        </div>
+        <!-- F: I J K L -->
+        <div class="net-face f" style="--c: #009b48">
+          <span class="net-sticker corner" style="background: var(--c)">I</span>
+          <span class="net-sticker blank" style="background: var(--c)"></span>
+          <span class="net-sticker corner" style="background: var(--c)">J</span>
+          <span class="net-sticker blank" style="background: var(--c)"></span>
+          <span class="net-sticker blank" style="background: var(--c)"></span>
+          <span class="net-sticker blank" style="background: var(--c)"></span>
+          <span class="net-sticker corner" style="background: var(--c)">L</span>
+          <span class="net-sticker blank" style="background: var(--c)"></span>
+          <span class="net-sticker corner" style="background: var(--c)">K</span>
+        </div>
+        <!-- R: M N O P -->
+        <div class="net-face r" style="--c: #b90000">
+          <span class="net-sticker corner" style="background: var(--c)">M</span>
+          <span class="net-sticker blank" style="background: var(--c)"></span>
+          <span class="net-sticker corner" style="background: var(--c)">N</span>
+          <span class="net-sticker blank" style="background: var(--c)"></span>
+          <span class="net-sticker blank" style="background: var(--c)"></span>
+          <span class="net-sticker blank" style="background: var(--c)"></span>
+          <span class="net-sticker corner" style="background: var(--c)">P</span>
+          <span class="net-sticker blank" style="background: var(--c)"></span>
+          <span class="net-sticker corner" style="background: var(--c)">O</span>
+        </div>
+        <!-- B: Q R S T -->
+        <div class="net-face b" style="--c: #0045ad">
+          <span class="net-sticker corner" style="background: var(--c)">Q</span>
+          <span class="net-sticker blank" style="background: var(--c)"></span>
+          <span class="net-sticker corner" style="background: var(--c)">R</span>
+          <span class="net-sticker blank" style="background: var(--c)"></span>
+          <span class="net-sticker blank" style="background: var(--c)"></span>
+          <span class="net-sticker blank" style="background: var(--c)"></span>
+          <span class="net-sticker corner" style="background: var(--c)">T</span>
+          <span class="net-sticker blank" style="background: var(--c)"></span>
+          <span class="net-sticker corner" style="background: var(--c)">S</span>
+        </div>
+        <!-- D: U V W X (TL, TR, BR, BL) -->
+        <div class="net-face d" style="--c: #f0d000">
+          <span class="net-sticker corner" style="background: var(--c)">U</span>
+          <span class="net-sticker blank" style="background: var(--c)"></span>
+          <span class="net-sticker corner" style="background: var(--c)">V</span>
+          <span class="net-sticker blank" style="background: var(--c)"></span>
+          <span class="net-sticker blank" style="background: var(--c)"></span>
+          <span class="net-sticker blank" style="background: var(--c)"></span>
+          <span class="net-sticker corner" style="background: var(--c)">X</span>
+          <span class="net-sticker blank" style="background: var(--c)"></span>
+          <span class="net-sticker corner" style="background: var(--c)">W</span>
+        </div>
+      </div>
+    </div>
+  </details>
+
   <script>
-    /**
-     * Edge letters (white U / green F), matching the practice net: green–red uses P on red.
-     * Deviations from common charts: R face N↔P as in the net; B face BR=T and BL=R (not BR=R, BL=T).
-     * Each physical edge appears twice in the quiz (once per sticker).
-     */
     const FACE_NAMES = {
       U: "Up (white)",
       D: "Down (yellow)",
@@ -466,6 +594,8 @@
       R: "Right (red)",
       L: "Left (orange)",
     };
+
+    const FACE_ORDER = ["U", "L", "F", "R", "B", "D"];
 
     const STICKER_COLORS = {
       U: "#f5f5f5",
@@ -477,9 +607,8 @@
     };
 
     /**
-     * One entry per physical edge; letters read from the net (top / left / right / bottom on each face).
+     * One entry per physical edge (matches edge net).
      * Pairs: UB A/Q · UR B/M · UF C/I · UL D/E · LF F/L · LD G/X · LB H/R · FR J/P · FD K/U · RD O/V · RB N/T · BD S/W
-     * @type {{ faces: [string, string], letters: Record<string, string> }[]}
      */
     const EDGE_STICKERS = [
       { faces: ["U", "B"], letters: { U: "A", B: "Q" } },
@@ -496,26 +625,65 @@
       { faces: ["B", "D"], letters: { B: "S", D: "W" } },
     ];
 
-    /** Flatten to quiz items: one row per sticker */
-    function buildQuizPool() {
+    /**
+     * Eight corners; letters match corner net (clockwise from top-left on each face).
+     * UBL A/E/Q · UBR B/R/N · UFL D/I/F · URF C/J/M · DFL U/L/G · DFR V/K/P · DBL X/H/T · DBR W/O/S
+     */
+    const CORNER_PIECES = [
+      { faces: ["U", "L", "B"], letters: { U: "A", L: "E", B: "Q" } },
+      { faces: ["U", "B", "R"], letters: { U: "B", B: "R", R: "N" } },
+      { faces: ["U", "F", "L"], letters: { U: "D", F: "I", L: "F" } },
+      { faces: ["U", "R", "F"], letters: { U: "C", F: "J", R: "M" } },
+      { faces: ["D", "F", "L"], letters: { D: "U", F: "L", L: "G" } },
+      { faces: ["D", "R", "F"], letters: { D: "V", F: "K", R: "P" } },
+      { faces: ["D", "L", "B"], letters: { D: "X", L: "H", B: "T" } },
+      { faces: ["D", "B", "R"], letters: { D: "W", B: "S", R: "O" } },
+    ];
+
+    function buildEdgePool() {
       const pool = [];
       for (const edge of EDGE_STICKERS) {
         const [a, b] = edge.faces;
-        pool.push({
-          viewingFace: a,
-          otherFace: b,
-          letter: edge.letters[a],
-        });
-        pool.push({
-          viewingFace: b,
-          otherFace: a,
-          letter: edge.letters[b],
-        });
+        pool.push({ kind: "edge", viewingFace: a, otherFace: b, letter: edge.letters[a] });
+        pool.push({ kind: "edge", viewingFace: b, otherFace: a, letter: edge.letters[b] });
       }
       return pool;
     }
 
-    const POOL = buildQuizPool();
+    function buildCornerPool() {
+      const pool = [];
+      for (const c of CORNER_PIECES) {
+        for (const f of c.faces) {
+          const others = c.faces.filter((x) => x !== f);
+          pool.push({
+            kind: "corner",
+            viewingFace: f,
+            otherFaces: others,
+            letter: c.letters[f],
+          });
+        }
+      }
+      return pool;
+    }
+
+    const POOL_EDGE = buildEdgePool();
+    const POOL_CORNER = buildCornerPool();
+
+    function getQuizMode() {
+      const el = document.querySelector('input[name="quizMode"]:checked');
+      return el ? el.value : "edges";
+    }
+
+    function getActivePool() {
+      const m = getQuizMode();
+      if (m === "edges") return POOL_EDGE;
+      if (m === "corners") return POOL_CORNER;
+      return POOL_EDGE.concat(POOL_CORNER);
+    }
+
+    function sortFaces(faces) {
+      return [...faces].sort((a, b) => FACE_ORDER.indexOf(a) - FACE_ORDER.indexOf(b));
+    }
 
     let current = null;
     let streak = 0;
@@ -523,7 +691,7 @@
     let totalAttempts = 0;
 
     const faceLine = document.getElementById("faceLine");
-    const edgeVisual = document.getElementById("edgeVisual");
+    const pieceVisual = document.getElementById("pieceVisual");
     const form = document.getElementById("quizForm");
     const input = document.getElementById("answer");
     const feedback = document.getElementById("feedback");
@@ -532,33 +700,50 @@
     const totalEl = document.getElementById("total");
 
     function shufflePick() {
-      const i = Math.floor(Math.random() * POOL.length);
-      return POOL[i];
+      const pool = getActivePool();
+      if (!pool.length) return null;
+      return pool[Math.floor(Math.random() * pool.length)];
     }
 
     function renderEdge(item) {
-      edgeVisual.innerHTML = "";
+      pieceVisual.innerHTML = "";
       const order = [item.viewingFace, item.otherFace];
       for (const face of order) {
         const div = document.createElement("div");
         div.className = "sticker";
         div.style.background = STICKER_COLORS[face];
         div.textContent = face;
-        if (face === item.viewingFace) {
-          div.classList.add("highlight");
-        } else {
-          div.classList.add("dim");
-        }
-        edgeVisual.appendChild(div);
+        div.classList.add(face === item.viewingFace ? "highlight" : "dim");
+        pieceVisual.appendChild(div);
       }
-      faceLine.textContent = FACE_NAMES[item.viewingFace];
+      faceLine.textContent = `Edge · ${FACE_NAMES[item.viewingFace]}`;
+    }
+
+    function renderCorner(item) {
+      pieceVisual.innerHTML = "";
+      const order = [item.viewingFace, ...sortFaces(item.otherFaces)];
+      for (const face of order) {
+        const div = document.createElement("div");
+        div.className = "sticker";
+        div.style.background = STICKER_COLORS[face];
+        div.textContent = face;
+        div.classList.add(face === item.viewingFace ? "highlight" : "dim");
+        pieceVisual.appendChild(div);
+      }
+      faceLine.textContent = `Corner · ${FACE_NAMES[item.viewingFace]}`;
+    }
+
+    function renderCurrent(item) {
+      if (!item) return;
+      if (item.kind === "edge") renderEdge(item);
+      else renderCorner(item);
     }
 
     function nextRound() {
       current = shufflePick();
       feedback.textContent = "";
       feedback.className = "feedback";
-      renderEdge(current);
+      renderCurrent(current);
       input.value = "";
       input.focus();
     }
@@ -604,6 +789,14 @@
       if (e.key === "Escape") {
         input.value = "";
       }
+    });
+
+    document.querySelectorAll('input[name="quizMode"]').forEach((radio) => {
+      radio.addEventListener("change", () => {
+        streak = 0;
+        streakEl.textContent = "0";
+        nextRound();
+      });
     });
 
     nextRound();
